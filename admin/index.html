@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ניהול חוזים | Menachem Pictures</title>
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1D1D1F;--sub:#6E6E73;--mute:#86868B;--line:#D2D2D7;--soft:#F5F5F7;--paper:#FBFBFD;--accent:#0066CC;--accent-soft:#E8F1FB;--ok:#1E8E3E;--okbg:#E6F4EA;--warn:#B3261E;--r:18px}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Heebo",-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.bar{position:sticky;top:0;z-index:20;background:rgba(251,251,253,.85);backdrop-filter:saturate(180%) blur(18px);-webkit-backdrop-filter:saturate(180%) blur(18px);border-bottom:1px solid rgba(0,0,0,.06)}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+.brand{font-weight:700;letter-spacing:.14em;font-size:12px;direction:ltr;white-space:nowrap}
+.brand span{color:var(--mute);font-weight:400}
+.pill{background:var(--ink);color:#fff;border-radius:999px;font-size:12px;font-weight:600;padding:4px 12px;letter-spacing:.05em}
+.hero{padding:44px 0 26px}
+h1{font-size:clamp(30px,5vw,44px);line-height:1.1;margin:0 0 8px;font-weight:800;letter-spacing:-.02em}
+.lead{color:var(--sub);font-size:17px;margin:0}
+.tabs{display:flex;gap:6px;background:#EBEBEF;padding:4px;border-radius:12px;width:max-content;margin:22px 0 0}
+.tabs button{border:0;background:none;font:inherit;font-size:15px;font-weight:500;padding:8px 18px;border-radius:9px;cursor:pointer;color:var(--sub)}
+.tabs button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.tabs .cnt{background:var(--soft);border-radius:999px;padding:0 7px;font-size:12px;margin-right:4px}
+.view{display:none}.view.on{display:block}
+
+.layout{display:grid;grid-template-columns:1fr 360px;gap:22px;align-items:start;margin-top:24px}
+@media (max-width:960px){.layout{grid-template-columns:1fr}}
+.card{background:#fff;border-radius:var(--r);box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 30px rgba(0,0,0,.04);padding:26px;margin-bottom:20px}
+.card h2{font-size:19px;margin:0 0 4px;font-weight:700}
+.card .sub{font-size:13.5px;color:var(--mute);margin:0 0 18px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cols3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media (max-width:720px){.cols,.cols3{grid-template-columns:1fr}.card{padding:20px}}
+.colhead{font-size:12px;letter-spacing:.12em;color:var(--mute);font-weight:600;margin-bottom:12px}
+.f{margin-bottom:14px}
+.f label{display:block;font-size:13px;color:var(--sub);margin-bottom:6px;font-weight:500}
+input[type=text],input[type=tel],input[type=date],input[type=number],input[type=search]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--soft);border:1.5px solid transparent;border-radius:12px;padding:11px 14px;outline:none;transition:border-color .2s,background .2s}
+input:focus{border-color:var(--accent);background:#fff}
+.money{position:relative}.money input{padding-left:34px}
+.money::after{content:"₪";position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--mute)}
+.hint{font-size:12.5px;color:var(--mute);margin-top:5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border-radius:999px;border:1.5px solid var(--line);font-size:14.5px;cursor:pointer;user-select:none;transition:all .15s;background:#fff}
+.chip span::before{content:"";width:15px;height:15px;border-radius:5px;border:1.5px solid var(--mute);flex:none}
+.chip input[type=radio]+span::before{border-radius:50%}
+.chip input:checked+span{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:500}
+.chip input:checked+span::before{background:var(--accent);border-color:var(--accent);box-shadow:inset 0 0 0 3px #fff}
+.grp{margin-bottom:16px}.gl{font-size:13px;color:var(--sub);font-weight:500;margin-bottom:8px}
+.other{margin-top:8px;display:none}.other.on{display:block}
+.sep{height:1px;background:#EFEFF2;margin:8px 0 20px}
+
+/* side */
+.side{position:sticky;top:76px}
+.sum{background:var(--ink);color:#fff;border-radius:var(--r);padding:24px}
+.sum .k{font-size:12px;letter-spacing:.12em;color:#A1A1A6;font-weight:600}
+.sum .who{font-size:20px;font-weight:700;margin:4px 0 2px}
+.sum .when{color:#A1A1A6;font-size:14px;margin-bottom:16px}
+.sum ul{list-style:none;padding:0;margin:0 0 16px;font-size:14px}
+.sum li{padding:4px 0;color:#E5E5EA}
+.sum li::before{content:"✓";color:#4DA3FF;margin-left:8px}
+.sum li.none{color:#6E6E73}.sum li.none::before{content:""}
+.sum .tot{border-top:1px solid #3A3A3C;padding-top:14px;display:flex;justify-content:space-between;align-items:baseline}
+.sum .tot b{font-size:30px;letter-spacing:-.01em}
+.sum .small{display:flex;justify-content:space-between;color:#A1A1A6;font-size:13.5px;margin-top:4px}
+.btn{appearance:none;border:0;border-radius:999px;font:inherit;font-size:16px;font-weight:600;padding:13px 26px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;transition:background .2s,transform .1s}
+.btn:active{transform:scale(.98)}
+.btn.primary{background:var(--accent);color:#fff;width:100%;margin-top:16px}
+.btn.primary:hover{background:#0058B0}
+.btn.ghost{background:var(--soft);color:var(--ink);font-size:14px;padding:9px 16px}
+.btn.wa{background:#25D366;color:#fff;font-size:14px;padding:9px 16px}
+.btn.sm{font-size:13px;padding:7px 12px}
+.msg{font-size:14px;min-height:20px;margin-top:10px}
+.msg.ok{color:var(--ok)}.msg.err{color:var(--warn)}
+.result{display:none;background:#fff;border-radius:var(--r);padding:20px;margin-top:16px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 30px rgba(0,0,0,.06);border:1.5px solid var(--accent)}
+.result.on{display:block}
+.result .code{font-size:13px;color:var(--sub)}
+.result .code b{font-size:22px;color:var(--ink);letter-spacing:.12em;margin-right:6px}
+.result input{direction:ltr;font-size:12.5px;margin:10px 0}
+.result .acts{display:flex;flex-wrap:wrap;gap:8px}
+
+/* list */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:24px 0 14px}
+.toolbar input{max-width:320px}
+.filter{display:flex;gap:6px}
+.filter button{border:1.5px solid var(--line);background:#fff;border-radius:999px;font:inherit;font-size:13.5px;padding:6px 14px;cursor:pointer;color:var(--sub)}
+.filter button.on{border-color:var(--ink);color:var(--ink);font-weight:600}
+.rows{display:flex;flex-direction:column;gap:10px}
+.row{background:#fff;border-radius:16px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 6px 20px rgba(0,0,0,.03);padding:16px 20px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.row .t{font-weight:600;font-size:16.5px}
+.row .m{font-size:13.5px;color:var(--sub);display:flex;gap:14px;flex-wrap:wrap;margin-top:2px}
+.row .m code{font-family:inherit;font-weight:600;color:var(--ink);letter-spacing:.08em}
+.row .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+@media (max-width:720px){.row{grid-template-columns:1fr}.row .acts{justify-content:flex-start}}
+.st{border:0;font:inherit;font-size:12.5px;font-weight:600;border-radius:999px;padding:4px 11px;cursor:pointer}
+.st.sent{background:#FFF4E5;color:#9A5B00}.st.signed{background:var(--okbg);color:var(--ok)}
+.empty{text-align:center;color:var(--mute);padding:50px 20px;background:#fff;border-radius:var(--r)}
+.store{font-size:12.5px;color:var(--mute)}
+.del{color:var(--warn)!important}
+.confirm{display:none;gap:6px;align-items:center;font-size:13px}
+.confirm.on{display:inline-flex}
+/* editor */
+.ed-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:24px 0 14px}
+.ed-note{font-size:14px;color:var(--sub);max-width:640px}
+.ed-note code{background:var(--soft);border-radius:6px;padding:1px 6px;font-size:13px;direction:ltr;display:inline-block}
+.ed-state{font-size:13px;font-weight:600;border-radius:999px;padding:4px 12px;background:var(--soft);color:var(--sub)}
+.ed-state.mod{background:#FFF4E5;color:#9A5B00}
+.sec{background:#fff;border-radius:var(--r);box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 30px rgba(0,0,0,.04);padding:20px 22px;margin-bottom:14px}
+.sec.changed{box-shadow:0 0 0 2px #F5C26B,0 8px 30px rgba(0,0,0,.04)}
+.sec-h{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+.sec-h .num{font-weight:800;color:var(--accent);font-size:18px;min-width:26px}
+.sec-h input{font-weight:700;font-size:17px}
+.cl{display:grid;grid-template-columns:62px 1fr auto;gap:8px;align-items:start;margin-bottom:8px}
+.cl input{text-align:center;padding:10px 6px;font-weight:600}
+.cl textarea{width:100%;font:inherit;font-size:15px;line-height:1.6;color:var(--ink);background:var(--soft);border:1.5px solid transparent;border-radius:12px;padding:10px 12px;outline:none;resize:vertical;min-height:46px}
+.cl textarea:focus{border-color:var(--accent);background:#fff}
+.cl.sub{padding-right:26px}
+.ic{border:0;background:none;color:var(--mute);font-size:18px;cursor:pointer;padding:8px;border-radius:8px;line-height:1}
+.ic:hover{background:#FDECEC;color:var(--warn)}
+.sec-f{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.linkbtn{background:none;border:0;color:var(--accent);font:inherit;font-size:14px;cursor:pointer;padding:6px 4px}
+.linkbtn.red{color:var(--warn)}
+.ed-bottom{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;align-items:center;margin:8px 0 10px}
+.warnbox{background:#FFF4E5;color:#7A4A00;border-radius:12px;padding:10px 14px;font-size:13.5px;margin-top:10px;display:none}
+.warnbox.on{display:block}
+
+/* lock */
+.lock{position:fixed;inset:0;z-index:100;background:var(--paper);display:flex;align-items:center;justify-content:center;padding:20px}
+.lock.off{display:none}
+.lock .box{width:100%;max-width:380px;background:#fff;border-radius:22px;box-shadow:0 10px 40px rgba(0,0,0,.08);padding:34px 30px;text-align:center}
+.lock .w{font-weight:700;letter-spacing:.16em;font-size:12px;direction:ltr;margin-bottom:22px}
+.lock h2{margin:0 0 6px;font-size:24px}
+.lock p{color:var(--sub);font-size:14.5px;margin:0 0 20px}
+.lock input{margin-bottom:10px;text-align:center}
+.lock .btn{width:100%;margin-top:6px;background:var(--ink);color:#fff}
+.lock .err{color:var(--warn);font-size:13.5px;min-height:20px;margin-top:8px}
+.io{display:flex;gap:8px;margin-right:auto}
+
+footer{text-align:center;color:var(--mute);font-size:13px;padding:40px 0 50px}
+</style>
+</head>
+<body>
+<div class="bar"><div class="wrap">
+  <div class="brand">MENACHEM KATZBURG <span>|</span> MENACHEM PICTURES</div>
+  <span class="pill">ניהול</span>
+</div></div>
+
+<div class="lock" id="lock"><form class="box" id="lockForm" autocomplete="off">
+  <div class="w">MENACHEM PICTURES</div>
+  <h2 id="lockTitle">כניסה לניהול</h2>
+  <p id="lockSub">הזינו את הסיסמה</p>
+  <input type="password" id="pw1" placeholder="סיסמה" autocomplete="current-password">
+  <input type="password" id="pw2" placeholder="אימות סיסמה" style="display:none" autocomplete="new-password">
+  <button class="btn" type="submit" id="lockBtn">כניסה</button>
+  <div class="err" id="lockErr"></div>
+</form></div>
+<main class="wrap">
+  <header class="hero">
+    <h1>ניהול חוזים.</h1>
+    <p class="lead">מגדירים חבילה ומחיר לכל לקוח, שולחים קישור אישי, ועוקבים מי חתם.</p>
+    <div class="tabs">
+      <button class="on" data-tab="new" type="button">חוזה חדש</button>
+      <button data-tab="terms" type="button">עריכת החוזה <span class="cnt" id="modCnt" style="display:none"></span></button>
+      <button data-tab="list" type="button">חוזים שנשלחו <span class="cnt" id="cnt">0</span></button>
+    </div>
+  </header>
+
+  <!-- ======= חוזה חדש ======= -->
+  <div class="view on" id="v-new">
+   <div class="layout">
+    <div>
+      <div class="card">
+        <h2>הלקוח</h2>
+        <p class="sub">לרשימה שלך ולשליחה בוואטסאפ. הלקוח ממלא את הפרטים המלאים בעצמו.</p>
+        <div class="f" style="max-width:300px"><label>מספר הצעת מחיר</label><input type="text" id="a_quote" maxlength="30" dir="ltr" style="text-align:right" placeholder="למשל 2026-045"><div class="hint">יופיע ללקוח בחוזה ובמסמך החתום</div></div>
+        <div class="cols3">
+          <div class="f"><label>שם לקוח / אירוע</label><input type="text" id="a_name" placeholder="חתונת כהן–לוי"></div>
+          <div class="f"><label>טלפון הלקוח</label><input type="tel" id="a_phone" dir="ltr" placeholder="050-0000000"></div>
+          <div class="f"><label>תאריך האירוע</label><input type="date" id="a_date"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>נסיעה ורחפן</h2><p class="sub">&nbsp;</p>
+        <div class="cols">
+          <div class="grp"><div class="gl">אזור נסיעה</div><div class="chips">
+            <label class="chip"><input type="radio" name="zone" value="ירושלים והסביבה (0 ₪)"><span>ירושלים והסביבה · 0 ₪</span></label>
+            <label class="chip"><input type="radio" name="zone" value="מחוץ לירושלים (+800 ₪)"><span>מחוץ לירושלים · <bdi dir="ltr">+800</bdi> ₪</span></label>
+          </div></div>
+          <div class="grp"><div class="gl">צילום רחפן</div><div class="chips">
+            <label class="chip"><input type="radio" name="drone" value="לא נדרש"><span>לא נדרש</span></label>
+            <label class="chip"><input type="radio" name="drone" value="מפעיל חיצוני"><span>מפעיל חיצוני</span></label>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>צוות ותוצרים</h2><p class="sub">מה שתסמן כאן יופיע ללקוח בחוזה, לקריאה בלבד.</p>
+        <div class="cols">
+          <div>
+            <div class="colhead">צוות צילום וסוגי הפקה</div>
+            <div class="grp"><div class="gl">צילום סטילס</div><div class="chips">
+              <label class="chip"><input type="checkbox" name="crew" value="צלם סטילס 1"><span>צלם סטילס 1</span></label>
+              <label class="chip"><input type="checkbox" name="crew" value="2 צלמי סטילס"><span>2 צלמי סטילס</span></label>
+              <label class="chip"><input type="checkbox" name="crew" value="3 צלמי סטילס"><span>3 צלמי סטילס</span></label>
+            </div></div>
+            <div class="grp"><div class="gl">צילום וידאו</div><div class="chips">
+              <label class="chip"><input type="checkbox" name="crew" value="צלם וידאו 1"><span>צלם וידאו 1</span></label>
+              <label class="chip"><input type="checkbox" name="crew" value="2 צלמי וידאו"><span>2 צלמי וידאו</span></label>
+              <label class="chip"><input type="checkbox" name="crew" value="רחפן (מפעיל חיצוני)"><span>רחפן (מפעיל חיצוני)</span></label>
+            </div></div>
+            <div class="grp"><div class="gl">נוסף</div><div class="chips">
+              <label class="chip"><input type="checkbox" name="crew" value="תאורה ניידת / סאונד"><span>תאורה ניידת / סאונד</span></label>
+              <label class="chip"><input type="checkbox" name="crew" value="אחר" id="crewOtherChk"><span>אחר</span></label>
+            </div>
+            <div class="other" id="crewOtherBox"><input type="text" id="crew_other" placeholder="פרטו…" maxlength="60"></div></div>
+          </div>
+          <div>
+            <div class="colhead">תוצרים כלולים בחבילה</div>
+            <div class="chips" style="flex-direction:column;align-items:flex-start">
+              <label class="chip"><input type="checkbox" name="deliv" value="תמונות סטילס ערוכות (צבע, חשיפה וחיתוך)"><span>תמונות סטילס ערוכות (צבע, חשיפה וחיתוך)</span></label>
+              <label class="chip"><input type="checkbox" name="deliv" value="סרטון היילייטס / תקציר ערוך"><span>סרטון היילייטס / תקציר ערוך</span></label>
+              <label class="chip"><input type="checkbox" name="deliv" value="סרטון מלא"><span>סרטון מלא</span></label>
+              <label class="chip"><input type="checkbox" name="deliv" value="רילס / סושיאל"><span>רילס / סושיאל</span></label>
+              <label class="chip"><input type="checkbox" name="deliv" value="גלריה דיגיטלית"><span>גלריה דיגיטלית</span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>תמורה כספית</h2><p class="sub">עוסק פטור – ללא מע"מ. סכומים בשקלים שלמים.</p>
+        <div class="cols3">
+          <div class="f"><label>סכום עסקה סופי</label><div class="money"><input type="number" id="p_total" inputmode="numeric" dir="ltr" min="0"></div></div>
+          <div class="f"><label>מקדמה</label><div class="money"><input type="number" id="p_dep" inputmode="numeric" dir="ltr" min="0"></div></div>
+          <div class="f"><label>תוספת מרחק / רחפן</label><div class="money"><input type="number" id="p_extra" inputmode="numeric" dir="ltr" min="0"></div></div>
+        </div>
+        <div class="f" style="max-width:300px"><label>החזר הוצאות נסיעה (סעיף 6.2א)</label><div class="money"><input type="number" id="a_refund" inputmode="numeric" dir="ltr" min="0"></div></div>
+      </div>
+    </div>
+
+    <aside class="side">
+      <div class="sum">
+        <div class="k">סיכום החוזה</div>
+        <div class="who" id="s_who">לקוח חדש</div>
+        <div class="when" id="s_when">תאריך לא הוזן</div>
+        <ul id="s_items"><li class="none">עוד לא נבחרו פריטים</li></ul>
+        <div class="tot"><span>סה"כ</span><b id="s_total">—</b></div>
+        <div class="small"><span>מקדמה</span><span id="s_dep">—</span></div>
+        <div class="small"><span>תוספת מרחק / רחפן</span><span id="s_extra">—</span></div>
+      </div>
+      <button class="btn primary" id="gen" type="button">יצירת קישור ללקוח</button>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="msg" id="genMsg"></div>
+        <button class="btn ghost sm" id="reset" type="button" style="margin-top:10px">טופס חדש</button>
+      </div>
+      <div class="result" id="result">
+        <div class="code">קוד הצעה <b id="r_code"></b></div>
+        <input type="text" id="r_link" readonly>
+        <div class="acts">
+          <button class="btn wa" id="r_wa" type="button">שליחה בוואטסאפ</button>
+          <button class="btn ghost" id="r_copy" type="button">העתקת קישור</button>
+          <a class="btn ghost" id="r_open" href="#" target="_blank" rel="noopener">תצוגה כלקוח</a>
+        </div>
+        <div class="msg ok" id="r_msg"></div>
+        <div class="warnbox" id="r_terms"></div>
+      </div>
+    </aside>
+   </div>
+  </div>
+
+  <!-- ======= עריכת החוזה ======= -->
+  <div class="view" id="v-terms">
+    <div class="ed-top">
+      <div class="ed-note">כאן עורכים את נוסח תנאי ההסכם. השינויים נשמרים אוטומטית ונכנסים לכל קישור <b>חדש</b> שתיצור. קישורים שכבר נשלחו נשארים עם הנוסח שהיה בזמן השליחה.<br>
+      בסעיף 6.2א, <code>{{travel_refund}}</code> הוא המקום שבו מופיע סכום החזר הנסיעה – לא למחוק.</div>
+      <span class="ed-state" id="edState">נוסח מקורי</span>
+    </div>
+    <div id="editor"></div>
+    <div class="ed-bottom">
+      <button class="btn ghost" id="addSec" type="button">+ הוספת פרק</button>
+      <span class="store" id="edSaved"></span>
+      <button class="linkbtn red" id="resetTerms" type="button">שחזור הנוסח המקורי</button>
+    </div>
+    <div class="confirm" id="resetConfirm" style="margin-bottom:20px"><span>לשחזר את כל הנוסח המקורי? כל העריכות יימחקו.</span>
+      <button class="btn ghost sm del" id="resetYes" type="button">כן, לשחזר</button><button class="btn ghost sm" id="resetNo" type="button">ביטול</button></div>
+  </div>
+
+  <!-- ======= רשימה ======= -->
+  <div class="view" id="v-list">
+    <div class="toolbar">
+      <input type="search" id="q" placeholder="חיפוש לפי שם, קוד או מספר הצעה…">
+      <div class="filter" id="flt">
+        <button class="on" data-f="all" type="button">הכול</button>
+        <button data-f="sent" type="button">ממתינים לחתימה</button>
+        <button data-f="signed" type="button">נחתמו</button>
+      </div>
+      <span class="store" id="store"></span>
+      <div class="io"><button class="btn ghost sm" id="exportBtn" type="button">גיבוי רשימה</button>
+      <label class="btn ghost sm" style="cursor:pointer">שחזור מגיבוי<input type="file" id="importFile" accept=".json,application/json" hidden></label></div>
+    </div>
+    <div class="rows" id="rows"></div>
+  </div>
+</main>
+<footer>עמוד ניהול פרטי · לא לשתף עם לקוחות · <button class="linkbtn" id="logout" type="button" style="font-size:13px">יציאה</button></footer>
+
+<script>
+/* ---- נעילה בסיסמה ---- */
+(()=>{
+  const K="mp_admin_pw",S="mp_admin_ok",lock=document.getElementById("lock"),$l=id=>document.getElementById(id);
+  const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+  async function h(pw){const d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("mp-salt-26:"+pw));return [...new Uint8Array(d)].map(b=>b.toString(16).padStart(2,"0")).join("")}
+  let stored=get(K);const isNew=!stored;
+  try{if(sessionStorage.getItem(S)===stored&&stored){lock.classList.add("off");return}}catch(e){}
+  if(isNew){$l("lockTitle").textContent="הגדרת סיסמה";$l("lockSub").textContent="בחרו סיסמה לדף הניהול בדפדפן הזה";$l("pw2").style.display="";$l("lockBtn").textContent="שמירה וכניסה";$l("pw1").autocomplete="new-password"}
+  setTimeout(()=>$l("pw1").focus(),50);
+  $l("lockForm").addEventListener("submit",async e=>{e.preventDefault();const a=$l("pw1").value,err=$l("lockErr");
+    if(isNew){if(a.length<4){err.textContent="לפחות 4 תווים";return}if(a!==$l("pw2").value){err.textContent="הסיסמאות לא תואמות";return}stored=await h(a);set(K,stored)}
+    else if(await h(a)!==stored){err.textContent="סיסמה שגויה";$l("pw1").select();return}
+    try{sessionStorage.setItem(S,stored)}catch(e){}lock.classList.add("off")});
+  document.addEventListener("DOMContentLoaded",()=>{});
+  window.__mpLogout=()=>{try{sessionStorage.removeItem(S)}catch(e){}location.reload()};
+})();
+const CLIENT_URL="https://menachempictures.github.io/contract/";
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const opts=n=>[...document.querySelectorAll(`input[name=${n}]`)].map(i=>i.value);
+const vals=n=>[...document.querySelectorAll(`input[name=${n}]:checked`)].map(i=>i.value);
+const CREW=opts("crew"),DELIV=opts("deliv"),ZONES=opts("zone"),DRONES=opts("drone");
+const ils=v=>v?Number(v).toLocaleString("he-IL")+" ₪":"—";
+const fmtDate=v=>{if(!v)return"";const[y,m,d]=v.split("-");return`${d}/${m}/${y}`};
+
+/* ---- קידוד (זהה לעמוד הלקוח) ---- */
+const b36=n=>(parseInt(n,10)||0).toString(36);
+const hex=str=>[...new TextEncoder().encode(str)].map(b=>b.toString(16).padStart(2,"0")).join("");
+function chk(str){let h=7;for(const ch of str)h=(h*31+ch.charCodeAt(0))%46656;return h.toString(36).padStart(3,"0")}
+async function encode(c){
+  let m=0;c.crew.forEach(v=>m|=1<<CREW.indexOf(v));c.deliv.forEach(v=>m|=1<<(8+DELIV.indexOf(v)));
+  m|=(ZONES.indexOf(c.zone)+1)<<13;m|=(DRONES.indexOf(c.drone)+1)<<15;
+  const parts=[m.toString(36),b36(c.total),b36(c.dep),b36(c.extra),b36(c.refund),hex(c.crewOther)];
+  if(c.quote)parts.push("q"+hex(c.quote));
+  const d=diffTerms(BASE_TERMS,TERMS);if(d)parts.push(await packTerms(d));
+  const body=parts.join("-");
+  return "c-"+body+"-"+chk(body);
+}
+
+/* ---- טופס ---- */
+function read(){return{quote:$("a_quote").value.trim(),name:$("a_name").value.trim(),phone:$("a_phone").value.trim(),date:$("a_date").value,
+  crew:vals("crew"),crewOther:$("crew_other").value.trim(),deliv:vals("deliv"),zone:vals("zone")[0]||"",drone:vals("drone")[0]||"",
+  total:$("p_total").value,dep:$("p_dep").value,extra:$("p_extra").value,refund:$("a_refund").value}}
+function fill(c){
+  document.querySelectorAll(".chip input").forEach(i=>{const v=c[i.name];i.checked=Array.isArray(v)?v.includes(i.value):v===i.value});
+  $("a_quote").value=c.quote||"";$("a_name").value=c.name||"";$("a_phone").value=c.phone||"";$("a_date").value=c.date||"";$("crew_other").value=c.crewOther||"";
+  $("p_total").value=c.total||"";$("p_dep").value=c.dep||"";$("p_extra").value=c.extra||"";$("a_refund").value=c.refund||"";
+  $("crewOtherBox").classList.toggle("on",$("crewOtherChk").checked);renderSum();
+}
+const crewList=c=>c.crew.map(v=>v==="אחר"&&c.crewOther?`אחר: ${c.crewOther}`:v);
+function renderSum(){
+  const c=read();
+  $("s_who").textContent=c.name||"לקוח חדש";$("s_when").textContent=(c.date?fmtDate(c.date):"תאריך לא הוזן")+(c.quote?` · הצעת מחיר ${c.quote}`:"");
+  const items=[...crewList(c),...c.deliv,c.zone&&("נסיעה: "+c.zone),c.drone&&("רחפן: "+c.drone)].filter(Boolean);
+  $("s_items").innerHTML=items.length?items.map(x=>`<li>${esc(x)}</li>`).join(""):'<li class="none">עוד לא נבחרו פריטים</li>';
+  $("s_total").textContent=ils(c.total);$("s_dep").textContent=ils(c.dep);$("s_extra").textContent=ils(c.extra);
+  try{localStorage.setItem("mp_admin_form",JSON.stringify(c))}catch(e){}
+}
+document.addEventListener("input",e=>{if(e.target.closest("#v-new"))renderSum()});
+document.addEventListener("change",e=>{if(e.target.closest("#v-new"))renderSum()});
+$("crewOtherChk").addEventListener("change",e=>$("crewOtherBox").classList.toggle("on",e.target.checked));
+document.querySelectorAll('input[name=zone]').forEach(r=>r.addEventListener("change",()=>{
+  if(r.checked&&r.value.includes("800")&&!$("p_extra").value){$("p_extra").value=800;renderSum()}}));
+try{const c=JSON.parse(localStorage.getItem("mp_admin_form")||"null");if(c)fill(c)}catch(e){}
+
+/* ---- וואטסאפ ---- */
+function waNum(p){let d=(p||"").replace(/\D/g,"");if(d.startsWith("0"))d="972"+d.slice(1);return d}
+function openLink(url){const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove()}
+function waSend(rec){
+  const text=`שלום${rec.name?" "+rec.name:""}, מצורף ההסכם לשירותי הצילום מ-Menachem Pictures.\nנא לעבור על הפרטים, למלא, לחתום ולשלוח בחזרה 🙏\n${rec.link}`;
+  openLink(`https://wa.me/${waNum(rec.phone)}?text=`+encodeURIComponent(text));
+}
+
+/* ---- שמירה: מסד נתונים של העמוד, או הדפדפן ---- */
+let db=null,LIST=[],unsub=null;
+const LS="mp_contracts";
+function lsLoad(){try{return JSON.parse(localStorage.getItem(LS)||"[]")}catch(e){return[]}}
+function lsSave(){try{localStorage.setItem(LS,JSON.stringify(LIST))}catch(e){}}
+async function putRec(r){if(db){try{await db.doc("contracts/"+r.id).set(r);return}catch(e){}}
+  const i=LIST.findIndex(x=>x.id===r.id);if(i>-1)LIST[i]=r;else LIST.unshift(r);lsSave();renderList()}
+async function delRec(id){if(db){try{await db.doc("contracts/"+id).delete();return}catch(e){}}
+  LIST=LIST.filter(x=>x.id!==id);lsSave();renderList()}
+LIST=lsLoad();renderList();$("store").textContent="נשמר בדפדפן הזה";
+(async()=>{try{
+  if(!(window.claude&&claude.use))return;db=await claude.use("db");if(!db)return;
+  loadRemoteTerms();
+  const t=setTimeout(()=>{$("store").textContent="אין חיבור לשמירה בענן – נשמר בדפדפן הזה"},10000);
+  unsub=db.collection("contracts").orderBy("createdAt","desc").limit(500).onSnapshot(snap=>{
+    clearTimeout(t);
+    const remote=snap.docs.map(d=>d.data());
+    // העברה חד-פעמית של רשומות מקומיות לענן
+    const local=lsLoad().filter(l=>!remote.some(r=>r.id===l.id));
+    if(local.length&&!snap.metadata.fromCache){local.forEach(l=>db.doc("contracts/"+l.id).set(l).catch(()=>{}));try{localStorage.removeItem(LS)}catch(e){}}
+    LIST=remote.concat(local).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));
+    $("store").textContent="נשמר בענן – זמין מכל מכשיר";renderList();
+  },()=>{clearTimeout(t);db=null;$("store").textContent="נשמר בדפדפן הזה"});
+}catch(e){}})();
+
+/* ---- יצירת קישור ---- */
+let current=null;
+$("gen").onclick=async()=>{
+  const c=read();
+  if(!c.crew.length&&!c.deliv.length&&!c.total){$("genMsg").className="msg err";$("genMsg").textContent="סמנו צוות, תוצר או סכום.";return}
+  const hash=await encode(c),code=hash.slice(-3).toUpperCase(),link=CLIENT_URL+"#"+hash;
+  current={...c,id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),code,link,status:"sent",createdAt:new Date().toISOString()};
+  await putRec(current);
+  $("r_code").textContent=code;$("r_link").value=link;$("r_open").href=link;$("result").classList.add("on");
+  $("genMsg").className="msg ok";$("genMsg").textContent="נשמר ברשימת החוזים";$("r_msg").textContent="";
+  const tw=$("r_terms"),nm=modifiedCount();
+  tw.classList.toggle("on",nm>0);tw.textContent=nm?`הקישור כולל את הנוסח הערוך של החוזה (${nm} פרקים שונו).`+(link.length>4000?" הקישור ארוך – אם הוואטסאפ חותך אותו, שלחו בהעתקה.":""):"";
+  $("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+};
+$("r_wa").onclick=()=>current&&waSend(current);
+$("r_copy").onclick=async()=>{try{await navigator.clipboard.writeText($("r_link").value);$("r_msg").textContent="הקישור הועתק."}catch(e){$("r_link").select();$("r_msg").textContent="סמנו את הקישור והעתיקו."}};
+$("reset").onclick=()=>{fill({crew:[],deliv:[]});$("result").classList.remove("on");$("genMsg").textContent="";current=null};
+
+/* ---- רשימה ---- */
+let FLT="all";
+function renderList(){
+  $("cnt").textContent=LIST.length;
+  const q=$("q").value.trim().toLowerCase();
+  const rows=LIST.filter(r=>(FLT==="all"||r.status===FLT)&&(!q||(r.name||"").toLowerCase().includes(q)||(r.code||"").toLowerCase().includes(q)||(r.quote||"").toLowerCase().includes(q)));
+  if(!rows.length){$("rows").innerHTML=`<div class="empty">${LIST.length?"אין תוצאות":"עוד לא נשלחו חוזים. צרו חוזה חדש בלשונית הראשונה."}</div>`;return}
+  $("rows").innerHTML=rows.map(r=>`<div class="row" data-id="${esc(r.id)}">
+    <div>
+      <div class="t">${esc(r.name||"ללא שם")} <button class="st ${r.status}" data-a="status" type="button">${r.status==="signed"?"✓ נחתם":"ממתין לחתימה"}</button></div>
+      <div class="m">${r.quote?`<span>הצעת מחיר <code>${esc(r.quote)}</code></span>`:""}<span>קוד <code>${esc(r.code)}</code></span>${r.date?`<span>אירוע: ${fmtDate(r.date)}</span>`:""}<span>${ils(r.total)}</span><span>נוצר ${new Date(r.createdAt).toLocaleDateString("he-IL")}</span>${r.phone?`<span dir="ltr">${esc(r.phone)}</span>`:""}</div>
+    </div>
+    <div class="acts">
+      <button class="btn wa sm" data-a="wa" type="button">וואטסאפ</button>
+      <button class="btn ghost sm" data-a="copy" type="button">העתקה</button>
+      <a class="btn ghost sm" href="${esc(r.link)}" target="_blank" rel="noopener">פתיחה</a>
+      <button class="btn ghost sm" data-a="dup" type="button">שכפול לעריכה</button>
+      <button class="btn ghost sm del" data-a="del" type="button">מחיקה</button>
+      <span class="confirm"><span>למחוק?</span><button class="btn ghost sm del" data-a="del2" type="button">כן</button><button class="btn ghost sm" data-a="nodel" type="button">לא</button></span>
+    </div></div>`).join("");
+}
+$("rows").addEventListener("click",async e=>{
+  const b=e.target.closest("[data-a]");if(!b)return;const row=b.closest(".row"),r=LIST.find(x=>x.id===row.dataset.id);if(!r)return;
+  const a=b.dataset.a;
+  if(a==="wa")waSend(r);
+  if(a==="copy"){try{await navigator.clipboard.writeText(r.link);b.textContent="הועתק ✓"}catch(err){b.textContent="נחסם"}setTimeout(()=>b.textContent="העתקה",1500)}
+  if(a==="status")putRec({...r,status:r.status==="signed"?"sent":"signed"});
+  if(a==="dup"){fill(r);showTab("new");$("result").classList.remove("on");$("genMsg").className="msg ok";$("genMsg").textContent="הפרטים נטענו – ערכו וצרו קישור חדש";window.scrollTo({top:0,behavior:"smooth"})}
+  if(a==="del")row.querySelector(".confirm").classList.add("on");
+  if(a==="nodel")row.querySelector(".confirm").classList.remove("on");
+  if(a==="del2")delRec(r.id);
+});
+$("q").addEventListener("input",renderList);
+$("flt").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;FLT=b.dataset.f;[...$("flt").children].forEach(x=>x.classList.toggle("on",x===b));renderList()});
+/* ---- קידוד נוסח החוזה לתוך הקישור ---- */
+const B62="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+function b62enc(bytes){let out=String(bytes.length%5);
+  for(let i=0;i<bytes.length;i+=5){let v=0;for(let k=0;k<5;k++)v=v*256+(bytes[i+k]||0);let s="";for(let k=0;k<7;k++){s=B62[v%62]+s;v=Math.floor(v/62)}out+=s}return out}
+function b62dec(str){const rem=+str[0],body=str.slice(1),bytes=[];
+  for(let i=0;i<body.length;i+=7){let v=0;for(const ch of body.slice(i,i+7))v=v*62+B62.indexOf(ch);const ch5=[];for(let k=0;k<5;k++){ch5.unshift(v%256);v=Math.floor(v/256)}bytes.push(...ch5)}
+  const len=bytes.length-(rem?5-rem:0);return new Uint8Array(bytes.slice(0,len))}
+async function streamBytes(bytes,ts){const s=new Blob([bytes]).stream().pipeThrough(ts);return new Uint8Array(await new Response(s).arrayBuffer())}
+async function packTerms(obj){const raw=new TextEncoder().encode(JSON.stringify(obj));
+  if(window.CompressionStream){try{return "z"+b62enc(await streamBytes(raw,new CompressionStream("deflate-raw")))}catch(e){}}
+  return "u"+b62enc(raw)}
+async function unpackTerms(p){let bytes=b62dec(p.slice(1));if(p[0]==="z")bytes=await streamBytes(bytes,new DecompressionStream("deflate-raw"));return JSON.parse(new TextDecoder().decode(bytes))}
+function diffTerms(base,cur){const s=[];cur.forEach((sec,i)=>{if(JSON.stringify(sec)!==JSON.stringify(base[i]))s.push([i,sec[0],sec[1]])});
+  return (s.length||cur.length!==base.length)?{n:cur.length,s}:null}
+function applyTermsDiff(base,d){const T=base.slice(0,d.n).map(x=>[x[0],x[1]]);d.s.forEach(([i,t,c])=>{T[i]=[t,c]});return T.filter(Boolean)}
+
+const BASE_TERMS = [
+ ["כללי, מה הלקוח מקבל ומה נדרש מהלקוח",[
+  ["1.1","מסמך זה, לרבות הצעת המחיר, הזמנת העבודה ודרישת התשלום המצורפות אליו, מהווה הסכם מחייב בין נותן השירות (מנחם קצבורג / Menachem Pictures) לבין הלקוח, אלא אם סוכם אחרת בכתב ובחתימת שני הצדדים."],
+  ["1.2","אישור הצעת המחיר, חתימה על הסכם זה או ביצוע תשלום כלשהו (לרבות מקדמה) על ידי הלקוח מהווים הסכמה מלאה ובלתי חוזרת לכל התנאים המפורטים להלן."],
+  ["1.3","מה הלקוח מקבל: שירותי צילום והפקה בהתאם למסומן בטבלת התוצרים ולהצעת המחיר, איכות ביצוע מקצועית ואספקת תוצרים במועד המוסכם."],
+  ["1.4","מה נדרש מהלקוח: מסירת מידע מדויק מראש (מיקום, שעות, לוח זמנים ורשימת רגעים/פריטים חשובים), שיתוף פעולה סביר במהלך הצילום, דאגה לאישורי כניסה ולחניה חינם במקום עבור הצלם וכלל הצלמים בצוות, ועמידה בתנאי התשלום וההתקשרות."]]],
+ ["שעות צילום, לוחות זמנים ושעות נוספות",[
+  ["2.1","חבילת הצילום הבסיסית כוללת עד 5 שעות צילום רצופות, הנמדדות משעת תחילת האירוע שסוכמה מראש בטבלת הפרטים בראש הסכם זה (לדוגמה: אם סוכמה הגעה לתחילת צילום בשעה 18:00, שעות הבסיס הן עד השעה 23:00)."],
+  ["2.2","עיכוב בתחילת האירוע או בלוח הזמנים שאינו תלוי בנותן השירות (כגון איחור האורחים, עיכוב בנאומים או בהפקה) נספר כחלק משעות העבודה המוסכמות מרגע השעה שנקבעה בראש ההסכם."],
+  ["2.3","כל שעת צילום נוספת מעבר ל-5 השעות שסוכמו מראש תחויב בתוספת של 250 ₪ לכל שעה נוספת (בחלוקה לחצאי שעה / שעה מלאה לפי סיכום מראש), בכפוף לזמינות נותן השירות באירוע."]]],
+ ["אזורי נסיעה, תוספת מרחק והפעלת רחפן",[
+  ["3.1","אזורי נסיעה ותוספת מרחק: צילומים באזור ירושלים והסביבה הקרובה אינם כרוכים בתוספת מרחק. בכל אירוע או צילום מחוץ לאזור ירושלים והסביבה (לרבות אזור המרכז/תל אביב, השפלה, הצפון או הדרום – מכל מקום בארץ עד לכל מקום בארץ) תחול תוספת מרחק קבועה של 800 ₪ עבור נסיעות וזמן נסיעה."],
+  ["3.2","צילום רחפן (מפעיל חיצוני ותלות במזג אוויר): נותן השירות אינו מטיס רחפן בעצמו. הזמנת צילום רחפן כרוכה בהתקשרות עם מפעיל רחפן חיצוני מוסמך ותחויב בתוספת תשלום של 4,000 עד 5,000 ₪ (ואף יותר, בהתאם לסוג המפעיל, מורכבות ההפקה, רישוי/אישורי טיסה ודרישות הלקוח)."],
+  ["3.3","הפעלת רחפן מותנית באופן מוחלט בתנאי מזג אוויר מתאימים ובטיחותיים (רוח, גשם, ראות, מגבלות בטיחות או הנחיות גורמי תעופה/ביטחון). אם בשל מזג אוויר או מגבלה בטיחותית/חוקית לא ניתן להטיס את הרחפן בבטחה, לא תתבצע הטסה ולא תיווצר עילת תביעה או פיצוי מצד הלקוח, תוך בירור והתחשבנות הוגנת מול המפעיל החיצוני בגין הוצאות שכבר הוצאו או הוקצו."]]],
+ ["תוקף הצעת המחיר ושינויים בהיקף",[
+  ["4.1","המחירים בהצעת המחיר תקפים בהתאם לתאריך, למיקום, לאזור הנסיעה, למספר אנשי הצוות ולהיקף השירותים המצוינים בה."],
+  ["4.2","כל שינוי מהותי במיקום, במספר המשתתפים, בדרישות ההפקה או בהיקף התוצרים המבוקשים יחייב עדכון של הצעת המחיר ואישור בכתב."]]],
+ ["שינוי מועד וביטול עסקה (כולל ביטול צלם נוסף)",[
+  ["5.1","שינוי מועד עד 3 חודשים מהמועד המקורי: הלקוח רשאי לבקש דחייה של מועד הצילומים למועד חלופי בטווח של עד 3 חודשים ממועד האירוע המקורי, ללא חיוב בדמי שינוי מועד וללא שינוי במחיר שסוכם, בכפוף לזמינות נותן השירות. דחייה תתאפשר פעם אחת בלבד; ביטול לאחר ביצוע דחייה יחויב לפי מועד האירוע המקורי."],
+  ["5.2","שינוי מועד מעבר ל-3 חודשים מהמועד המקורי: דחיית האירוע מעבר ל-3 חודשים מהמועד המקורי תיחשב כביטול שריון התאריך המקורי ותחויב בדמי שריון וניהול מוסכמים בשיעור של 25%–30% מסכום ההצעה המקורית, ועבור המועד החדש תופק הצעת מחיר מעודכנת."],
+  ["5.3","ביטול עסקה מלא בטווח של 30 עד 14 ימים לפני מועד האירוע: יחויב הלקוח בפיצוי מוסכם בגין אובדן יום עבודה והיערכות בשיעור של 50% מסכום הצעת המחיר המקורית."],
+  ["5.4","ביטול עסקה מלא בטווח של פחות מ-14 ימים לפני מועד האירוע: יחויב הלקוח בפיצוי מוסכם בגין אובדן הכנסה ושריון בלעדי בשיעור של 75%–80% מסכום הצעת המחיר המקורית (בקיזוז הוצאות משתנות שנחסכו כגון נסיעות)."],
+  ["5.5","ביטול של צלם נוסף / חלקי: אם הלקוח מבקש לבטל צלם נוסף אחד בלבד (כגון צלם סטילס או וידאו נוסף מתוך צוות של מספר צלמים) מבלי לבטל את כלל העסקה – יחויב הלקוח בתשלום מוסכם של 20% מעלות אותו צלם נוסף (פיצוי בגין שריון מועד, תיאום ואובדן הזדמנות עבודה שנגרמו לצלם ולאמרגן/מפיק). ככל שהביטול מתבצע בפרק זמן קצר מאוד (פחות מ-48 שעות לפני האירוע) וכבר נוצרו התחייבויות סופיות מול הצלם, יחולו דמי הביטול הרלוונטיים עד לעלות אותו רכיב."]]],
+ ["מצבי חירום, כוח עליון ותקלה טכנית בקבצים",[
+  ["6.1","כוח עליון ביטחוני / צו שלטוני: במקרה של מלחמה, מצב חירום מוכרז או הנחיות פיקוד העורף האוסרות על קיום האירוע במועדו, יידחה האירוע למועד חלופי בתיאום הצדדים ללא דמי ביטול (בכפוף לזמינות). אם הלקוח יבחר לבטל את העסקה לחלוטין אף שניתן לתאם מועד חלופי סביר, יקוזזו הוצאות ההיערכות והשריון בפועל בשיעור מוסכם של 25%–30%."],
+  ["6.2","תקלה טכנית בלתי צפויה / אובדן קבצים: נותן השירות פועל בסטנדרט מקצועי גבוה הכולל גיבוי כפול במהלך הצילום. במקרה נדיר של תקלה טכנית בלתי צפויה בכרטיסי זיכרון או ציוד שאינה נובעת מרשלנות חמורה או זדון, יחול מנגנון השבה והפחתת מחיר מוסכם מראש:"],
+  ["א.","אובדן מלא של כל חומרי הצילום: השבה מלאה (100%) של התמורה ששולמה עבור הצילום (או פטור מלא מתשלום), למעט החזר הוצאות נסיעה בפועל בסך {{travel_refund}} ₪ כפי שסוכם מראש.","sub"],
+  ["ב.","אובדן חלקי מהותי (אובדן של 21 תמונות ומעלה או אובדן חלק מרכזי מהאירוע): הפחתה של 50% מסכום הצעת המחיר המקורית והשבת ההפרש ללקוח.","sub"],
+  ["ג.","אובדן נקודתי מצומצם (אובדן של עד 20 תמונות מתוך כלל החומרים, כאשר עיקר האירוע מתועד כראוי): הפחתה של 20%–25% מסכום הצעת המחיר המקורית.","sub"],
+  ["6.3","תיחום אחריות: למעט במקרה של רשלנות חמורה או זדון, ההשבה וההפחתה המפורטות בסעיף 6.2 ממצות את סעדי הלקוח בגין אובדן חומרים, ונותן השירות לא יחויב בפיצוי בגין נזקים עקיפים או תוצאתיים מעבר לסכום העסקה."]]],
+ ["אחריות הלקוח (אישורי כניסה וחניה), תוצרים ומועדי אספקה",[
+  ["7.1","הלקוח אחראי למסור מראש ובכתב לוח זמנים מסודר, מיקומים מדויקים ורשימת צילומים חיוניים (כגון צילומי משפחה, אח\"מים או רגעים מיוחדים). בנוסף, הלקוח אחראי לדאוג לצלם ולכלל הצלמים בצוות לאישורי כניסה מוסדרים ולחניה חינם במקום האירוע/הצילום (או לשאת בעלות החניה ככל שלא הוסדרה חניה חינם מראש)."],
+  ["7.2","פריט, אדם או רגע שלא הוגדרו מראש בבריף/בלוח הזמנים שנמסר לנותן השירות, או שלא התאפשר לצלמם בשל עיכוב בכניסה/חניה, אילוצי הפקה, קהל או תנאי מקום – אי-צילומם לא ייחשב להפרת הסכם ולא יזכה בהפחתת מחיר או בפיצוי."],
+  ["7.3","התוצרים שיימסרו ללקוח הם אך ורק אלו המפורטים בטבלת התוצרים לעיל ובהצעת המחיר. מועד מסירת התוצרים הערוכים הוא עד 30 ימים קלנדריים (הנספרים החל מיום למחרת מועד סיום הצילום; לדוגמה: אם הצילום התקיים ביום חמישי, ספירת 30 הימים תחל ביום שישי), אלא אם סוכם אחרת בכתב בהצעת המחיר."]]],
+ ["זכויות יוצרים, רישיון שימוש ומתן קרדיט",[
+  ["8.1","בהתאם לחוק זכות יוצרים, תשס\"ח-2007, מלוא זכויות היוצרים והקניין הרוחני בכל הצילומים, הסרטונים וחומרי הגלם שצולמו על ידי נותן השירות שייכות לנותן השירות בלבד."],
+  ["8.2","בכפוף לתשלום מלוא התמורה הכספית בגין העסקה, מוענק ללקוח רישיון שימוש רחב ובלתי מוגבל בזמן להשתמש, להדפיס, לשתף ולהפיץ את התוצרים לכל מטרה של הלקוח (למעט מכירת הצילומים לצדדים שלישיים כמאגר תמונות)."],
+  ["8.3","חובת קרדיט בפרסום פומבי: בכל פרסום פומבי של התוצרים ברשתות החברתיות (אינסטגרם, פייסבוק, טיקטוק, לינקדאין וכד'), באתרי אינטרנט, בכתבות תקשורת או בפרסום חיצוני לקהל הרחב – מתחייב הלקוח לציין קרדיט צילום ברור לצלם: \"צילום: מנחם קצבורג / Menachem Pictures\" (או תיוג ‎@menachempictures)."],
+  ["8.4","פטור מקרדיט בשימוש פנימי: בשימוש פנימי בתוך הארגון, במצגות סגורות, באלבומים פרטיים או בהעברה פרטית בין מוזמנים/עובדים שאינה פרסום פומבי ברשתות או באתרים – אין חובת ציון קרדיט."],
+  ["8.5","נותן השירות רשאי להציג מבחר מן התוצרים בתיק העבודות שלו, באתר האינטרנט וברשתות החברתיות לצורך קידום עסקי, אלא אם הלקוח ביקש בכתב מראש (לפני האירוע) לשמור על חיסיון."]]],
+ ["תנאי תשלום, פיצוי בגין איחור וסמכות שיפוט",[
+  ["9.1","התשלום יבוצע במזומן, בהעברה בנקאית או בצ'ק לפקודת מנחם קצבורג (בנק יהב 04, סניף 120, חשבון 535017)."],
+  ["9.2","מועד התשלום: ניתן לשלם עד תנאי שוטף + 60 מיום ביצוע האירוע (ולא יאוחר ממועד זה), אלא אם סוכם אחרת בהצעת המחיר."],
+  ["9.3","איחור בתשלום: איחור בתשלום מעבר למועד שוטף + 60 ייחשב להפרה יסודית. בגין כל איחור יישא הלקוח בהפרשי הצמדה וריבית פיגורים כדין, ובנוסף בפיצוי מוסכם מדורג בגין הוצאות גבייה, טיפול וניהול בסך 10% מסכום החשבונית (או 150 ₪ לכל שבוע איחור, עד לתקרה של 50% מסכום העסקה)."],
+  ["9.4","שונות וסמכות שיפוט: כל שינוי, תוספת או ויתור ביחס להוראות הסכם זה יהיו תקפים אך ורק אם נעשו בכתב ונחתמו על ידי שני הצדדים. בכל סתירה בין תנאים כלליים אלה לבין הצעת מחיר פרטנית חתומה, יגברו הוראות הצעת מחיר הפרטנית. סמכות השיפוט הייחודית והבלעדית בכל מחלוקת הנובעת מהסכם זה תהא נתונה לבתי המשפט המוסמכים במחוז ירושלים בלבד."]]]
+];
+let TERMS=JSON.parse(JSON.stringify(BASE_TERMS));
+const clone=x=>JSON.parse(JSON.stringify(x));
+function modifiedCount(){const d=diffTerms(BASE_TERMS,TERMS);if(!d)return 0;return d.s.length+Math.max(0,BASE_TERMS.length-TERMS.length)}
+function edStatus(){
+  const n=modifiedCount();$("edState").textContent=n?`נערך · ${n} פרקים שונו`:"נוסח מקורי";$("edState").classList.toggle("mod",n>0);
+  $("modCnt").style.display=n?"":"none";$("modCnt").textContent="נערך";
+  document.querySelectorAll(".sec").forEach((el,i)=>el.classList.toggle("changed",JSON.stringify(TERMS[i])!==JSON.stringify(BASE_TERMS[i])));
+}
+function renderEditor(){
+  $("editor").innerHTML=TERMS.map((sec,i)=>`<div class="sec" data-s="${i}">
+    <div class="sec-h"><span class="num">${i+1}.</span><input type="text" data-k="title" value="${esc(sec[0])}"><button class="ic" data-k="delsec" title="מחיקת פרק" type="button">🗑</button></div>
+    ${sec[1].map((c,j)=>`<div class="cl${c[2]?" sub":""}" data-c="${j}">
+      <input type="text" data-k="n" value="${esc(c[0])}"><textarea data-k="txt" rows="2">${esc(c[1])}</textarea>
+      <button class="ic" data-k="delcl" title="מחיקת סעיף" type="button">✕</button></div>`).join("")}
+    <div class="sec-f"><button class="linkbtn" data-k="addcl" type="button">+ הוספת סעיף</button><button class="linkbtn" data-k="addsub" type="button">+ סעיף משנה (א, ב, ג…)</button></div>
+  </div>`).join("");
+  autosize();edStatus();
+}
+function autosize(){document.querySelectorAll("#editor textarea").forEach(t=>{t.style.height="auto";t.style.height=(t.scrollHeight+2)+"px"})}
+let saveT=null;
+function saveTerms(){
+  edStatus();clearTimeout(saveT);$("edSaved").textContent="שומר…";
+  saveT=setTimeout(async()=>{
+    try{localStorage.setItem("mp_terms",JSON.stringify(TERMS))}catch(e){}
+    if(db){try{await db.doc("settings/terms").set({terms:JSON.stringify(TERMS),updatedAt:new Date().toISOString()})}catch(e){}}
+    $("edSaved").textContent=db?"נשמר בענן":"נשמר בדפדפן הזה";
+  },700);
+}
+$("editor").addEventListener("input",e=>{
+  const el=e.target,sec=el.closest(".sec");if(!sec)return;const i=+sec.dataset.s,k=el.dataset.k;
+  if(k==="title")TERMS[i][0]=el.value;
+  else{const j=+el.closest(".cl").dataset.c;if(k==="n")TERMS[i][1][j][0]=el.value;if(k==="txt"){TERMS[i][1][j][1]=el.value;el.style.height="auto";el.style.height=(el.scrollHeight+2)+"px"}}
+  saveTerms();
+});
+$("editor").addEventListener("click",e=>{
+  const b=e.target.closest("[data-k]");if(!b||b.tagName==="INPUT"||b.tagName==="TEXTAREA")return;
+  const sec=b.closest(".sec"),i=+sec.dataset.s,k=b.dataset.k,cls=TERMS[i][1];
+  if(k==="delcl"){cls.splice(+b.closest(".cl").dataset.c,1)}
+  if(k==="addcl"){const nums=cls.filter(c=>!c[2]).length;cls.push([`${i+1}.${nums+1}`,""])}
+  if(k==="addsub"){const L="אבגדהוזחטיכלמנסעפצקרשת",subs=cls.filter(c=>c[2]).length;cls.push([L[subs]+".","","sub"])}
+  if(k==="delsec"){if(!b.dataset.sure){b.dataset.sure="1";b.textContent="למחוק?";setTimeout(()=>{if(b.isConnected){delete b.dataset.sure;b.textContent="🗑"}},2500);return}TERMS.splice(i,1)}
+  renderEditor();saveTerms();
+  if(k==="addcl"||k==="addsub"){const t=$("editor").querySelectorAll(`.sec[data-s="${i}"] textarea`);t[t.length-1]?.focus()}
+});
+$("addSec").onclick=()=>{TERMS.push(["פרק חדש",[[`${TERMS.length+1}.1`,""]]]);renderEditor();saveTerms();$("editor").lastElementChild.scrollIntoView({behavior:"smooth"})};
+$("resetTerms").onclick=()=>$("resetConfirm").classList.add("on");
+$("resetNo").onclick=()=>$("resetConfirm").classList.remove("on");
+$("resetYes").onclick=()=>{TERMS=clone(BASE_TERMS);renderEditor();saveTerms();$("resetConfirm").classList.remove("on")};
+try{const t=JSON.parse(localStorage.getItem("mp_terms")||"null");if(Array.isArray(t)&&t.length)TERMS=t}catch(e){}
+renderEditor();
+async function loadRemoteTerms(){if(!db)return;try{const d=await db.doc("settings/terms").get();
+  if(d.exists){const t=JSON.parse(d.data().terms);if(Array.isArray(t)&&t.length){TERMS=t;try{localStorage.setItem("mp_terms",d.data().terms)}catch(e){}renderEditor()}}
+  else if(modifiedCount())saveTerms();}catch(e){}}
+
+$("logout").onclick=()=>window.__mpLogout();
+$("exportBtn").onclick=()=>{
+  const data=JSON.stringify({exportedAt:new Date().toISOString(),contracts:LIST,terms:TERMS},null,1);
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([data],{type:"application/json"}));
+  a.download=`גיבוי חוזים ${new Date().toLocaleDateString("he-IL").replace(/\./g,"-")}.json`;document.body.appendChild(a);a.click();a.remove();
+};
+$("importFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;
+  try{const d=JSON.parse(await f.text());const add=(d.contracts||[]).filter(r=>r&&r.id&&!LIST.some(x=>x.id===r.id));
+    for(const r of add)await putRec(r);
+    if(Array.isArray(d.terms)&&d.terms.length){TERMS=d.terms;renderEditor();saveTerms()}
+    $("store").textContent=`שוחזרו ${add.length} חוזים`;
+  }catch(err){$("store").textContent="קובץ גיבוי לא תקין"}e.target.value=""};
+function showTab(t){if(t==="terms")setTimeout(autosize,0);document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===t));
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("on",v.id==="v-"+t))}
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+renderSum();
+</script>
+</body>
+</html>
