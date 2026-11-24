@@ -347,10 +347,10 @@ input[type=date]::-webkit-calendar-picker-indicator,input[type=time]::-webkit-ca
       <div class="card">
         <h2>הלקוח</h2>
         <p class="sub">לרשימה שלך ולשליחה בוואטסאפ. הלקוח ממלא את הפרטים המלאים בעצמו.</p>
-        <div class="f narrow"><label>מספר הצעת מחיר</label><input type="text" id="a_quote" maxlength="30" dir="ltr" style="text-align:right" placeholder="למשל 2026-045"><div class="hint">יופיע ללקוח בחוזה ובמסמך החתום</div></div>
+        <div class="f narrow"><label>מספר הצעת מחיר</label><input type="text" autocomplete="off" id="a_quote" maxlength="30" dir="ltr" style="text-align:right" placeholder="למשל 2026-045"><div class="hint">יופיע ללקוח בחוזה ובמסמך החתום</div></div>
         <div class="cols3">
-          <div class="f"><label>שם לקוח / אירוע</label><input type="text" id="a_name" placeholder="חתונת כהן–לוי"></div>
-          <div class="f"><label>טלפון הלקוח</label><input type="tel" id="a_phone" dir="ltr" placeholder="050-0000000"></div>
+          <div class="f"><label>שם לקוח / אירוע</label><input type="text" autocomplete="off" id="a_name" placeholder="חתונת כהן–לוי"></div>
+          <div class="f"><label>טלפון הלקוח</label><input type="tel" autocomplete="off" id="a_phone" dir="ltr" placeholder="050-0000000"></div>
           <div class="f"><label>תאריך האירוע</label><input type="date" id="a_date"></div>
         </div>
       </div>
@@ -497,6 +497,7 @@ input[type=date]::-webkit-calendar-picker-indicator,input[type=time]::-webkit-ca
   document.addEventListener("DOMContentLoaded",()=>{});
   window.__mpLogout=()=>{try{sessionStorage.removeItem(S)}catch(e){}location.reload()};
 })();
+let FLT="all";
 const CLIENT_URL="https://menachempictures.github.io/contract/";
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -597,7 +598,7 @@ $("r_copy").onclick=async()=>{try{await navigator.clipboard.writeText($("r_link"
 $("reset").onclick=()=>{fill({crew:[],deliv:[]});$("result").classList.remove("on");$("genMsg").textContent="";current=null};
 
 /* ---- רשימה ---- */
-let FLT="all";
+
 function renderList(){
   $("cnt").textContent=LIST.length;
   const q=$("q").value.trim().toLowerCase();
@@ -727,6 +728,11 @@ function showTab(t){if(t==="terms")setTimeout(autosize,0);document.querySelector
   document.querySelectorAll(".view").forEach(v=>v.classList.toggle("on",v.id==="v-"+t))}
 document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
 renderSum();
+
+/* always start clean – also when Safari restores form values or the page from cache */
+function freshForm(){fill({crew:[],deliv:[]});$("result").classList.remove("on");$("genMsg").textContent="";current=null;showTab("new")}
+freshForm();
+window.addEventListener("pageshow",e=>{if(e.persisted)freshForm()});
 </script>
 </body>
 </html>
