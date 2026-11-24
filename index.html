@@ -408,6 +408,46 @@ input[type=date]::-webkit-date-and-time-value,input[type=time]::-webkit-date-and
 input[type=date]::-webkit-calendar-picker-indicator,input[type=time]::-webkit-calendar-picker-indicator{filter:invert(1);opacity:.6}
 .f.narrow{max-width:calc((100% - 24px) / 3)}
 @media (max-width:720px){.f.narrow{max-width:none}}
+
+/* PDF layout v2 */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+#stage,#stage *{-webkit-text-size-adjust:none;text-size-adjust:none}
+.cl-p{font-size:var(--tfs,9.4px);line-height:1.58;margin:0 0 .45em}
+.cl-h{font-size:calc(var(--tfs,9.4px) + 2.2px);margin:1.05em 0 .4em}
+.cl-h:first-child{margin-top:0}
+.dp .dp-body>div:first-child>.st:first-child{margin-top:4px}
+.dp.p1 .st{font-size:13px;margin:26px 0 10px}
+.dp.p1 .bx{padding:16px 18px;border-radius:16px}
+.dp.p1 .bx h4{font-size:11px;margin-bottom:8px}
+.dp.p1 .kv{font-size:12.5px;padding:3px 0}
+.dp.p1 .cell .k{font-size:10.5px}
+.dp.p1 .cell .v{font-size:14.5px;margin-top:4px}
+.dp.p1 .ck{font-size:12.5px}
+.dp.p1 .ck li{padding:4px 18px 4px 0}
+.dp.p1 .ck li::before{top:10px}
+.dp.p1 .g2,.dp.p1 .g4{gap:12px}
+.dp.p1 .px{gap:12px}
+.dp.p1 .px .bx .k{font-size:10.5px}
+.dp.p1 .px .bx .v{font-size:20px;margin-top:6px}
+.dp.p1 .px .bx.dk .v{font-size:30px}
+.dp.p1 .px .vat{font-size:9.5px}
+.p1sum{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;border:1px solid #D2D2D7;border-radius:16px;overflow:hidden}
+.p1sum .c{padding:14px 18px;border-left:1px solid #E5E5EA}
+.p1sum .c:last-child{border-left:0}
+.p1sum .k{font-size:10.5px;color:#6E6E73}
+.p1sum .v{font-size:13.5px;font-weight:600;margin-top:4px;color:#1D1D1F}
+.p1note{font-size:10.5px;color:#6E6E73;margin-top:12px}
+.dp.p1 .st{margin:20px 0 9px}
+.dp.p1 .dp-body>div:first-child .st{margin-top:2px}
+.dp.p1 .kv{padding:2px 0}
+.dp.p1 .bx{padding:14px 18px}
+.dp.p1 .ck li{padding:3px 18px 3px 0}
+.dp.p1 .ck li::before{top:9px}
+.dp.p1 .px .bx .v{font-size:19px}
+.dp.p1 .px .bx.dk .v{font-size:28px}
+.dp.p1.t1 .st{margin:14px 0 7px}.dp.p1.t1 .bx{padding:11px 15px}.dp.p1.t1 .kv,.dp.p1.t1 .ck{font-size:11.5px}.dp.p1.t1 .ck li{padding:2px 18px 2px 0}.dp.p1.t1 .ck li::before{top:7px}
+.dp.p1.t2 .kv,.dp.p1.t2 .ck{font-size:10.5px}.dp.p1.t2 .cell .v{font-size:12.5px}.dp.p1.t2 .px .bx .v{font-size:16px}.dp.p1.t2 .px .bx.dk .v{font-size:22px}.dp.p1.t2 .p1note{display:none}
+.dp.p1.t3 .kv,.dp.p1.t3 .ck{font-size:9.5px}.dp.p1.t3 .st{margin:10px 0 5px;font-size:11px}.dp.p1.t3 .bx{padding:8px 12px}
 </style>
 </head>
 <body>
@@ -790,18 +830,43 @@ function newPage(first){
     <div class="dp-foot"><span>Menachem Pictures · הרב עוזיאל 91, ירושלים · 053-622-5141 · menachempictures@gmail.com</span><span class="pn"></span></div>`;
   return pg;
 }
+async function loadDocFonts(){
+  try{await Promise.all(["300 12px Heebo","400 12px Heebo","500 12px Heebo","600 12px Heebo","700 12px Heebo","400 12px Montserrat"].map(f=>document.fonts.load(f,"אבג abc")));await document.fonts.ready}catch(e){}
+}
+function summaryBlock(){
+  const at=signedAt||new Date();
+  return P(`<div class="st">סטטוס ההסכם</div><div class="p1sum">
+    <div class="c"><div class="k">מצב</div><div class="v">נחתם על ידי שני הצדדים</div></div>
+    <div class="c"><div class="k">תאריך חתימה</div><div class="v">${at.toLocaleDateString("he-IL")}</div></div>
+    <div class="c"><div class="k">שעה</div><div class="v">${at.toLocaleTimeString("he-IL",{hour:"2-digit",minute:"2-digit"})}</div></div>
+    <div class="c"><div class="k">מספר הסכם</div><div class="v" dir="ltr" style="text-align:right">${docNo()}</div></div></div>
+    <div class="p1note">תנאי ההתקשרות המלאים וחתימות הצדדים מופיעים בעמודים 2–3 של מסמך זה.</div>`);
+}
 async function buildPages(){
-  try{await document.fonts.ready}catch(e){}
+  await loadDocFonts();
   const stage=$("stage");stage.innerHTML="";
-  let pg=newPage(true);stage.appendChild(pg);
   const place=p=>{const body=p.querySelector(".dp-body"),top=p.querySelector(".dp-rule").offsetTop+1;body.style.top=top+"px";return body};
-  let body=place(pg);
-  for(const b of buildBlocks()){
-    body.appendChild(b);
-    if(body.scrollHeight>body.clientHeight+1&&body.children.length>1){
-      body.removeChild(b);pg=newPage(false);stage.appendChild(pg);body=place(pg);body.appendChild(b);
+  const all=buildBlocks(),details=all.slice(0,4),rest=all.slice(4);
+  // page 1 – details only
+  const p1=newPage(true);p1.classList.add("p1");stage.appendChild(p1);
+  const b1=place(p1);details.forEach(b=>b1.appendChild(b));b1.appendChild(summaryBlock());
+  for(const t of ['t1','t2','t3']){if(b1.scrollHeight<=b1.clientHeight+1)break;p1.classList.add(t)}
+  // pages 2+ – terms + signatures, auto-fit into 2 pages
+  const flow=fs=>{
+    stage.style.setProperty("--tfs",fs+"px");
+    [...stage.children].slice(1).forEach(n=>n.remove());
+    let pg=newPage(false);stage.appendChild(pg);let body=place(pg);
+    for(const b of rest){
+      body.appendChild(b);
+      if(body.scrollHeight>body.clientHeight+1&&body.children.length>1){
+        body.removeChild(b);pg=newPage(false);stage.appendChild(pg);body=place(pg);body.appendChild(b);
+      }
     }
-  }
+    return stage.children.length-1;
+  };
+  let fs=10.6;
+  while(fs>8.4&&flow(fs)>2)fs=Math.round((fs-0.2)*10)/10;
+  if(fs<=8.4)flow(8.4);
   const pages=[...stage.children];pages.forEach((p,i)=>p.querySelector(".pn").textContent=`עמוד ${i+1} מתוך ${pages.length}`);
   return pages;
 }
