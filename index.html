@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>הסכם שירותי צילום והפקה | Menachem Pictures</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#1D1D1F; --sub:#6E6E73; --mute:#86868B; --line:#D2D2D7; --soft:#F5F5F7; --paper:#FBFBFD;
@@ -324,19 +324,97 @@ footer{font-size:12px;color:#86868B;padding:60px 0 70px;border-top:1px solid #D2
 @media (max-width:520px){.howto{flex-wrap:nowrap}.howto div{padding:0 10px;font-size:12.5px;white-space:nowrap}
   .row2{grid-template-columns:1fr;gap:0}.pv{font-size:22px}.pbox{padding:16px}.pl{font-size:13px}.pbox.main .pv{font-size:34px}}
 .pv{white-space:nowrap}
+
+/* ================= Menachem Katzburg dark theme ================= */
+:root{color-scheme:dark;--ink:#FFFFFF;--sub:#A1A1A6;--mute:#8E8E93;--line:rgba(255,255,255,.18);--soft:rgba(255,255,255,.06);--accent:#FFFFFF;
+  --glass:rgba(255,255,255,.07);--gline:rgba(255,255,255,.14);
+  --sf:"Heebo",-apple-system,BlinkMacSystemFont,"SF Hebrew","Helvetica Neue",Arial,sans-serif;--latin:"Montserrat","Heebo",sans-serif}
+html{background:#000}
+body{background:#000 radial-gradient(120% 60% at 50% -10%,rgba(168,150,190,.22),rgba(0,0,0,0) 60%) no-repeat;color:#fff;font-family:var(--sf);font-weight:300;letter-spacing:0}
+b,strong{font-weight:500}
+/* top bar + brand */
+.bar{background:rgba(0,0,0,.55);box-shadow:none;border-bottom:1px solid rgba(255,255,255,.08)}
+.bar .wrap{height:64px}
+.brand{font-family:var(--latin);color:#fff;letter-spacing:0;font-weight:400;line-height:1.1;text-align:left}
+.brand .b1{font-size:15px;letter-spacing:.28em;font-weight:400}
+.brand .b2{font-size:9px;letter-spacing:.42em;color:#A1A1A6;margin-top:4px}
+.pill{background:rgba(255,255,255,.1);border:1px solid var(--gline);font-weight:400}
+.prog{color:#A1A1A6}.prog .track{background:rgba(255,255,255,.18)}.prog .fill{background:#fff}
+/* headings */
+h1,h2,h3{color:#fff;font-weight:500}
+h1{letter-spacing:-.01em}
+h2{font-weight:400;letter-spacing:-.005em}
+h2 small,.lead,.card .sub,.hint{color:#A1A1A6}
+.lead{font-weight:300}
+.eyebrow{color:#D1D1D6;font-weight:300;letter-spacing:0;font-size:19px;font-family:var(--sf)}
+.hbrand{font-family:var(--latin);direction:ltr;margin:6px 0 34px}
+.hbrand .b1{font-size:clamp(26px,5.4vw,52px);letter-spacing:.14em;font-weight:400;color:#fff;line-height:1.1}
+.hbrand .b2{font-size:clamp(10px,1.5vw,14px);letter-spacing:.6em;color:#A1A1A6;margin-top:12px}
+/* glass tiles */
+.card,.sum,.row,.sec,.empty,.lock .box{background:var(--glass);border:1px solid var(--gline);box-shadow:none;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:32px;color:#fff}
+.colhead,.static,.card h2{color:#fff}
+.static b,.gl,.f label,.k{color:#A1A1A6}
+/* fields */
+input[type=text],input[type=tel],input[type=email],input[type=date],input[type=time],input[type=number],input[type=search],input[type=password],textarea{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:300;border-radius:16px}
+input::placeholder,textarea::placeholder{color:#6E6E73}
+input:focus,textarea:focus{background:rgba(255,255,255,.1);border-color:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.12)}
+input.filled,textarea.filled{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.28)}
+input.err{background:rgba(255,59,48,.12);border-color:#FF453A}
+.money::after{color:#8E8E93}
+/* buttons – white primary, glass secondary */
+.btn{border-radius:999px;font-weight:400}
+.btn.primary{background:#fff;color:#000;font-weight:500}
+.btn.primary:hover{background:#E8E8ED}
+.btn.ghost,.btn.wa{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.btn.ghost:hover,.btn.wa:hover{background:rgba(255,255,255,.18)}
+.linkbtn{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.msg.ok{color:#D1D1D6}
+.msg,.msg.err{color:#FF6961}
+footer{color:#8E8E93;border-color:rgba(255,255,255,.1)}
+.howto div{color:#A1A1A6;border-color:rgba(255,255,255,.16)}
+.howto b{background:#fff;color:#000}
+.ro li{border-color:rgba(255,255,255,.1);color:#fff}
+.ro li::before{border-color:#fff}
+.ro li.none{color:#8E8E93}
+.pbox{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.pbox.main{background:#fff;color:#000;border:0}
+.pbox.main .pl,.pbox.main .pn{color:#6E6E73}
+.pl{color:#A1A1A6}.pn{color:#8E8E93}
+details{border-color:rgba(255,255,255,.1)}
+summary{color:#fff;font-weight:400}
+summary .n{color:#8E8E93}
+summary .chev::before,summary .chev::after{background:#fff}
+.clause p{color:#E5E5EA;font-weight:300}
+.clause p .cn{color:#8E8E93}
+.rv{color:#fff;border-color:rgba(255,255,255,.4)}
+.agree{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.agree input{accent-color:#fff}
+.padbox{background:#fff;border:0}
+.padbox .ph{color:#86868B}
+.padbox .clr{color:#1D1D1F;text-decoration:none}
+.provider-sign{background:#fff;border:0;border-radius:18px;padding:10px 16px;justify-content:center}
+.done .tick{background:#fff;color:#000}
+.done p,.fine{color:#A1A1A6}
+.dp-brand .w,.dp-mini .w{font-family:"Montserrat",sans-serif;font-weight:400}
+.dp-brand .w{letter-spacing:.28em;font-size:16px}
+.dp-brand .n{font-family:"Montserrat",sans-serif;letter-spacing:.45em}
+@media (max-width:520px){.brand .b1{font-size:11px;letter-spacing:.2em}.brand .b2{font-size:7.5px;letter-spacing:.34em}.prog .track{width:60px}
+  .hbrand .b1{font-size:24px;letter-spacing:.1em;white-space:nowrap}.hbrand .b2{letter-spacing:.5em}}
 </style>
 </head>
 <body>
 
 <div class="bar"><div class="wrap">
-  <div class="brand"><b class="full" style="font-weight:700">MENACHEM KATZBURG <span>|</span> </b>MENACHEM PICTURES</div>
+  <div class="brand"><div class="b1">MENACHEM KATZBURG</div><div class="b2">PHOTOS &amp; VIDEO</div></div>
   <div class="prog"><span id="progTxt">0%</span><div class="track"><div class="fill" id="progFill"></div></div></div>
 </div></div>
 
 <main class="wrap" id="doc">
 
 <header class="hero">
-  <div class="eyebrow">MENACHEM PICTURES · JERUSALEM</div>
+  <div class="hbrand"><div class="b1">MENACHEM KATZBURG</div><div class="b2">PHOTOS &amp; VIDEO</div></div>
+  <div class="eyebrow">צילום בזווית אחרת</div>
   <h1>הסכם שירותי צילום והפקה.</h1>
   <p class="lead">תנאים כלליים להתקשרות, פירוט תוצרים ותמורה כספית.</p>
   <div class="howto">
@@ -698,9 +776,9 @@ function newPage(first){
   const pg=P("","dp");
   pg.innerHTML=`<div class="dp-top"></div>`+(first?`<div class="dp-head">
       <div><div class="dp-title">הסכם שירותי צילום והפקה</div><div class="dp-sub">תנאים כלליים להתקשרות, פירוט תוצרים ותמורה כספית</div></div>
-      <div class="dp-brand"><div class="w">MENACHEM PICTURES</div><div class="n">MENACHEM KATZBURG · JERUSALEM</div>
+      <div class="dp-brand"><div class="w">MENACHEM KATZBURG</div><div class="n">PHOTOS &amp; VIDEO</div>
         <div class="dp-meta">הסכם מס' <b>${docNo()}</b><br>${CFG.quote?`הצעת מחיר מס' <b>${esc(CFG.quote)}</b><br>`:""}נחתם <b>${(signedAt||new Date()).toLocaleDateString("he-IL")}</b></div></div></div>`
-    :`<div class="dp-mini"><span>הסכם שירותי צילום והפקה · מס' ${docNo()}</span><span class="w">MENACHEM PICTURES</span></div>`)
+    :`<div class="dp-mini"><span>הסכם שירותי צילום והפקה · מס' ${docNo()}</span><span class="w">MENACHEM KATZBURG</span></div>`)
     +`<div class="dp-rule"></div><div class="dp-body"></div>
     <div class="dp-foot"><span>Menachem Pictures · הרב עוזיאל 91, ירושלים · 053-622-5141 · menachempictures@gmail.com</span><span class="pn"></span></div>`;
   return pg;

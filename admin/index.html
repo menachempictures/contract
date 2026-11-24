@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ניהול חוזים | Menachem Pictures</title>
 <meta name="robots" content="noindex,nofollow">
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Heebo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#1D1D1F;--sub:#6E6E73;--mute:#86868B;--line:#D2D2D7;--soft:#F5F5F7;--paper:#FBFBFD;--accent:#1D1D1F;--accent-soft:#F0F0F2;--ok:#1D1D1F;--okbg:#F0F0F2;--warn:#B3261E;--r:18px}
 *{box-sizing:border-box}
@@ -213,16 +213,105 @@ input[type=search]{height:44px;font-size:15px;border-color:#D2D2D7;border-radius
 .lock .btn{background:#1D1D1F;border-radius:14px;padding:16px}
 footer{font-size:12px}
 .money input{padding-left:40px}
+
+/* ================= Menachem Katzburg dark theme ================= */
+:root{color-scheme:dark;--ink:#FFFFFF;--sub:#A1A1A6;--mute:#8E8E93;--line:rgba(255,255,255,.18);--soft:rgba(255,255,255,.06);--accent:#FFFFFF;
+  --glass:rgba(255,255,255,.07);--gline:rgba(255,255,255,.14);
+  --sf:"Heebo",-apple-system,BlinkMacSystemFont,"SF Hebrew","Helvetica Neue",Arial,sans-serif;--latin:"Montserrat","Heebo",sans-serif}
+html{background:#000}
+body{background:#000 radial-gradient(120% 60% at 50% -10%,rgba(168,150,190,.22),rgba(0,0,0,0) 60%) no-repeat;color:#fff;font-family:var(--sf);font-weight:300;letter-spacing:0}
+b,strong{font-weight:500}
+/* top bar + brand */
+.bar{background:rgba(0,0,0,.55);box-shadow:none;border-bottom:1px solid rgba(255,255,255,.08)}
+.bar .wrap{height:64px}
+.brand{font-family:var(--latin);color:#fff;letter-spacing:0;font-weight:400;line-height:1.1;text-align:left}
+.brand .b1{font-size:15px;letter-spacing:.28em;font-weight:400}
+.brand .b2{font-size:9px;letter-spacing:.42em;color:#A1A1A6;margin-top:4px}
+.pill{background:rgba(255,255,255,.1);border:1px solid var(--gline);font-weight:400}
+.prog{color:#A1A1A6}.prog .track{background:rgba(255,255,255,.18)}.prog .fill{background:#fff}
+/* headings */
+h1,h2,h3{color:#fff;font-weight:500}
+h1{letter-spacing:-.01em}
+h2{font-weight:400;letter-spacing:-.005em}
+h2 small,.lead,.card .sub,.hint{color:#A1A1A6}
+.lead{font-weight:300}
+.eyebrow{color:#D1D1D6;font-weight:300;letter-spacing:0;font-size:19px;font-family:var(--sf)}
+.hbrand{font-family:var(--latin);direction:ltr;margin:6px 0 34px}
+.hbrand .b1{font-size:clamp(26px,5.4vw,52px);letter-spacing:.14em;font-weight:400;color:#fff;line-height:1.1}
+.hbrand .b2{font-size:clamp(10px,1.5vw,14px);letter-spacing:.6em;color:#A1A1A6;margin-top:12px}
+/* glass tiles */
+.card,.sum,.row,.sec,.empty,.lock .box{background:var(--glass);border:1px solid var(--gline);box-shadow:none;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:32px;color:#fff}
+.colhead,.static,.card h2{color:#fff}
+.static b,.gl,.f label,.k{color:#A1A1A6}
+/* fields */
+input[type=text],input[type=tel],input[type=email],input[type=date],input[type=time],input[type=number],input[type=search],input[type=password],textarea{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:300;border-radius:16px}
+input::placeholder,textarea::placeholder{color:#6E6E73}
+input:focus,textarea:focus{background:rgba(255,255,255,.1);border-color:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.12)}
+input.filled,textarea.filled{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.28)}
+input.err{background:rgba(255,59,48,.12);border-color:#FF453A}
+.money::after{color:#8E8E93}
+/* buttons – white primary, glass secondary */
+.btn{border-radius:999px;font-weight:400}
+.btn.primary{background:#fff;color:#000;font-weight:500}
+.btn.primary:hover{background:#E8E8ED}
+.btn.ghost,.btn.wa{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.btn.ghost:hover,.btn.wa:hover{background:rgba(255,255,255,.18)}
+.linkbtn{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.msg.ok{color:#D1D1D6}
+.msg,.msg.err{color:#FF6961}
+footer{color:#8E8E93;border-color:rgba(255,255,255,.1)}
+.tabs{background:rgba(255,255,255,.08);border:1px solid var(--gline);border-radius:999px;padding:4px}
+.tabs button{color:#A1A1A6;border-radius:999px}
+.tabs button.on{background:#fff;color:#000;box-shadow:none}
+.tabs .cnt{background:rgba(0,0,0,.12)}
+.tabs button:not(.on) .cnt{background:rgba(255,255,255,.12);color:#fff}
+.chip span{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:16px}
+.chip:hover span{border-color:rgba(255,255,255,.5)}
+.chip input:checked+span{border:2px solid #fff;background:rgba(255,255,255,.12);color:#fff}
+.chip input:checked+span::after{border-color:#fff}
+.sep{background:rgba(255,255,255,.1)}
+.sum .k,.sum .when,.sum .small{color:#A1A1A6}
+.sum .who{color:#fff}
+.sum li{color:#fff;border-color:rgba(255,255,255,.08)}
+.sum li::before{color:#fff}
+.sum .tot{border-color:rgba(255,255,255,.15)}
+.result{background:rgba(255,255,255,.07);box-shadow:0 0 0 1.5px #fff;backdrop-filter:blur(20px)}
+.result .code{color:#A1A1A6}.result .code b{color:#fff}
+.row .m{color:#A1A1A6}.row .m code{color:#fff}
+.st.sent{background:rgba(255,255,255,.1);color:#fff}
+.st.signed{background:#fff;color:#000}
+.filter button{background:transparent;color:#A1A1A6;border-color:rgba(255,255,255,.2)}
+.filter button.on{border-color:#fff;color:#fff}
+.store{color:#8E8E93}
+.ed-note{color:#A1A1A6}.ed-note code{background:rgba(255,255,255,.1);color:#fff}
+.ed-state{background:rgba(255,255,255,.08);color:#A1A1A6}
+.ed-state.mod{background:#fff;color:#000}
+.sec.changed{box-shadow:0 0 0 1.5px #fff}
+.sec-h .num{color:#8E8E93}
+.cl textarea{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.18);color:#fff}
+.ic{color:#8E8E93}.ic:hover{background:rgba(255,69,58,.15);color:#FF6961}
+.del{color:#FF6961!important}
+.lock{background:#000 radial-gradient(120% 60% at 50% -10%,rgba(168,150,190,.22),rgba(0,0,0,0) 60%) no-repeat}
+.lock .w{font-family:var(--latin);font-weight:400;letter-spacing:.28em;font-size:14px;color:#fff}
+.lock .w2{font-family:var(--latin);letter-spacing:.42em;font-size:9px;color:#A1A1A6;margin:-16px 0 26px;direction:ltr}
+.lock p{color:#A1A1A6}
+.lock .btn{background:#fff;color:#000;font-weight:500}
+.lock .err{color:#FF6961}
+.warnbox{background:rgba(255,255,255,.08);color:#fff}
+@media (max-width:520px){.brand .b1{font-size:11px;letter-spacing:.2em}.brand .b2{font-size:7.5px;letter-spacing:.34em}.prog .track{width:60px}
+  .hbrand .b1{font-size:24px;letter-spacing:.1em;white-space:nowrap}.hbrand .b2{letter-spacing:.5em}}
+@media (max-width:520px){.tabs{width:100%;display:flex}.tabs button{flex:1;padding:8px 6px;font-size:13px;white-space:nowrap}}
 </style>
 </head>
 <body>
 <div class="bar"><div class="wrap">
-  <div class="brand">MENACHEM KATZBURG <span>|</span> MENACHEM PICTURES</div>
+  <div class="brand"><div class="b1">MENACHEM KATZBURG</div><div class="b2">PHOTOS &amp; VIDEO</div></div>
   <span class="pill">ניהול</span>
 </div></div>
 
 <div class="lock" id="lock"><form class="box" id="lockForm" autocomplete="off">
-  <div class="w">MENACHEM PICTURES</div>
+  <div class="w">MENACHEM KATZBURG</div><div class="w2">PHOTOS &amp; VIDEO</div>
   <h2 id="lockTitle">כניסה לניהול</h2>
   <p id="lockSub">הזינו את הסיסמה</p>
   <input type="password" id="pw1" placeholder="סיסמה" autocomplete="current-password">
