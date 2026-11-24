@@ -309,6 +309,9 @@ input[type=date]::-webkit-date-and-time-value,input[type=time]::-webkit-date-and
 input[type=date]::-webkit-calendar-picker-indicator,input[type=time]::-webkit-calendar-picker-indicator{filter:invert(1);opacity:.6}
 .f.narrow{max-width:calc((100% - 24px) / 3)}
 @media (max-width:720px){.f.narrow{max-width:none}}
+
+/* action panel on top (mobile) */
+@media (max-width:960px){.layout{display:flex;flex-direction:column}.layout>aside.side{order:-1;position:static;width:100%}}
 </style>
 </head>
 <body>
@@ -534,14 +537,13 @@ function renderSum(){
   const items=[...crewList(c),...c.deliv,c.zone&&("נסיעה: "+c.zone),c.drone&&("רחפן: "+c.drone)].filter(Boolean);
   $("s_items").innerHTML=items.length?items.map(x=>`<li>${esc(x)}</li>`).join(""):'<li class="none">עוד לא נבחרו פריטים</li>';
   $("s_total").textContent=ils(c.total);$("s_dep").textContent=ils(c.dep);$("s_extra").textContent=ils(c.extra);
-  try{localStorage.setItem("mp_admin_form",JSON.stringify(c))}catch(e){}
 }
 document.addEventListener("input",e=>{if(e.target.closest("#v-new"))renderSum()});
 document.addEventListener("change",e=>{if(e.target.closest("#v-new"))renderSum()});
 $("crewOtherChk").addEventListener("change",e=>$("crewOtherBox").classList.toggle("on",e.target.checked));
 document.querySelectorAll('input[name=zone]').forEach(r=>r.addEventListener("change",()=>{
   if(r.checked&&r.value.includes("800")&&!$("p_extra").value){$("p_extra").value=800;renderSum()}}));
-try{const c=JSON.parse(localStorage.getItem("mp_admin_form")||"null");if(c)fill(c)}catch(e){}
+try{localStorage.removeItem("mp_admin_form")}catch(e){}
 
 /* ---- וואטסאפ ---- */
 function waNum(p){let d=(p||"").replace(/\D/g,"");if(d.startsWith("0"))d="972"+d.slice(1);return d}
