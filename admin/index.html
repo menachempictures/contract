@@ -310,8 +310,9 @@ input[type=date]::-webkit-calendar-picker-indicator,input[type=time]::-webkit-ca
 .f.narrow{max-width:calc((100% - 24px) / 3)}
 @media (max-width:720px){.f.narrow{max-width:none}}
 
-/* action panel on top (mobile) */
-@media (max-width:960px){.layout{display:flex;flex-direction:column}.layout>aside.side{order:-1;position:static;width:100%}}
+.newbar{display:flex;margin:22px 0 -6px}
+.newbar .btn{font-size:15px;padding:11px 22px}
+#reset{display:none}
 </style>
 </head>
 <body>
@@ -342,6 +343,7 @@ input[type=date]::-webkit-calendar-picker-indicator,input[type=time]::-webkit-ca
 
   <!-- ======= חוזה חדש ======= -->
   <div class="view on" id="v-new">
+   <div class="newbar"><button class="btn ghost" id="resetTop" type="button">+ טופס חדש</button></div>
    <div class="layout">
     <div>
       <div class="card">
@@ -733,6 +735,7 @@ renderSum();
 function freshForm(){fill({crew:[],deliv:[]});$("result").classList.remove("on");$("genMsg").textContent="";current=null;showTab("new")}
 freshForm();
 window.addEventListener("pageshow",e=>{if(e.persisted)freshForm()});
+$("resetTop").onclick=()=>{freshForm();window.scrollTo({top:0,behavior:"smooth"})};
 </script>
 </body>
 </html>
