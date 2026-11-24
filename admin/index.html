@@ -302,6 +302,13 @@ footer{color:#8E8E93;border-color:rgba(255,255,255,.1)}
 @media (max-width:520px){.brand .b1{font-size:11px;letter-spacing:.2em}.brand .b2{font-size:7.5px;letter-spacing:.34em}.prog .track{width:60px}
   .hbrand .b1{font-size:24px;letter-spacing:.1em;white-space:nowrap}.hbrand .b2{letter-spacing:.5em}}
 @media (max-width:520px){.tabs{width:100%;display:flex}.tabs button{flex:1;padding:8px 6px;font-size:13px;white-space:nowrap}}
+/* aligned fields (iOS date/time fix) */
+.cols>*,.cols3>*,.row2>*,.f{min-width:0}
+input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;display:block;width:100%;min-width:0;max-width:100%;text-align:right;line-height:1.2}
+input[type=date]::-webkit-date-and-time-value,input[type=time]::-webkit-date-and-time-value{text-align:right;margin:0}
+input[type=date]::-webkit-calendar-picker-indicator,input[type=time]::-webkit-calendar-picker-indicator{filter:invert(1);opacity:.6}
+.f.narrow{max-width:calc((100% - 24px) / 3)}
+@media (max-width:720px){.f.narrow{max-width:none}}
 </style>
 </head>
 <body>
@@ -337,7 +344,7 @@ footer{color:#8E8E93;border-color:rgba(255,255,255,.1)}
       <div class="card">
         <h2>הלקוח</h2>
         <p class="sub">לרשימה שלך ולשליחה בוואטסאפ. הלקוח ממלא את הפרטים המלאים בעצמו.</p>
-        <div class="f" style="max-width:300px"><label>מספר הצעת מחיר</label><input type="text" id="a_quote" maxlength="30" dir="ltr" style="text-align:right" placeholder="למשל 2026-045"><div class="hint">יופיע ללקוח בחוזה ובמסמך החתום</div></div>
+        <div class="f narrow"><label>מספר הצעת מחיר</label><input type="text" id="a_quote" maxlength="30" dir="ltr" style="text-align:right" placeholder="למשל 2026-045"><div class="hint">יופיע ללקוח בחוזה ובמסמך החתום</div></div>
         <div class="cols3">
           <div class="f"><label>שם לקוח / אירוע</label><input type="text" id="a_name" placeholder="חתונת כהן–לוי"></div>
           <div class="f"><label>טלפון הלקוח</label><input type="tel" id="a_phone" dir="ltr" placeholder="050-0000000"></div>
@@ -401,7 +408,7 @@ footer{color:#8E8E93;border-color:rgba(255,255,255,.1)}
           <div class="f"><label>מקדמה</label><div class="money"><input type="number" id="p_dep" inputmode="numeric" dir="ltr" min="0"></div></div>
           <div class="f"><label>תוספת מרחק / רחפן / גלם</label><div class="money"><input type="number" id="p_extra" inputmode="numeric" dir="ltr" min="0"></div></div>
         </div>
-        <div class="f" style="max-width:300px"><label>החזר הוצאות נסיעה (סעיף 6.2א)</label><div class="money"><input type="number" id="a_refund" inputmode="numeric" dir="ltr" min="0"></div></div>
+        <div class="f narrow"><label>החזר הוצאות נסיעה (סעיף 6.2א)</label><div class="money"><input type="number" id="a_refund" inputmode="numeric" dir="ltr" min="0"></div></div>
       </div>
     </div>
 
