@@ -222,6 +222,108 @@ body.admin #clientScope,body.admin .clientOnly,body.admin .prog{display:none!imp
 footer{text-align:center;color:var(--mute);font-size:13px;padding:50px 0 60px}
 footer a{color:var(--sub);text-decoration:none}
 .snap .clause input.inline,.snap input,.snap textarea{border-color:transparent!important}
+
+/* ================= Apple theme ================= */
+:root{--ink:#1D1D1F;--sub:#6E6E73;--mute:#86868B;--line:#D2D2D7;--soft:#F5F5F7;--paper:#F5F5F7;--accent:#0071E3;--accent-soft:#E8F2FD;--r:28px;
+  --sf:"SF Pro Display","SF Pro Text","SF Hebrew",-apple-system,BlinkMacSystemFont,"Heebo","Helvetica Neue",Arial,sans-serif}
+body{font-family:var(--sf);background:#F5F5F7;letter-spacing:-.01em;line-height:1.47}
+.wrap{max-width:980px}
+.bar{background:rgba(245,245,247,.8);border-bottom:0;box-shadow:0 1px 0 rgba(0,0,0,.05)}
+.bar .wrap{height:48px}
+.brand{font-size:12px;font-weight:600;letter-spacing:.08em;color:#1D1D1F}
+.prog{font-size:12px}
+.prog .track{height:4px;background:#D2D2D7}
+/* hero */
+.hero{padding:88px 0 56px}
+.eyebrow{font-size:14px;letter-spacing:.06em;color:#BF4800;font-weight:600}
+h1{font-size:clamp(40px,7.2vw,72px);font-weight:700;letter-spacing:-.025em;line-height:1.05;margin:12px 0 14px}
+.lead{font-size:clamp(19px,2.6vw,26px);color:#1D1D1F;font-weight:400;letter-spacing:.005em;max-width:640px;line-height:1.25}
+.howto{gap:0;margin-top:44px;justify-content:center}
+.howto div{background:none;border-radius:0;padding:0 26px;font-size:15px;color:var(--sub);display:flex;flex-direction:column;align-items:center;gap:8px;border-left:1px solid #D2D2D7}
+.howto div:last-child{border-left:0}
+.howto b{width:34px;height:34px;border-radius:50%;background:#1D1D1F;color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600}
+@media (max-width:520px){.howto div{padding:0 14px;font-size:13.5px}}
+/* section heads + tiles */
+h2{font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-.02em;line-height:1.1;margin:72px 0 22px}
+h2 small{font-size:17px;color:var(--sub);font-weight:400;margin-top:8px;letter-spacing:0}
+section{margin:0 0 20px}
+.card{border-radius:28px;box-shadow:none;padding:40px}
+@media (max-width:720px){.card{padding:26px 22px;border-radius:22px}}
+.colhead{font-size:17px;letter-spacing:-.01em;text-transform:none;color:#1D1D1F;font-weight:600;margin-bottom:16px}
+.static{font-size:15px;color:#1D1D1F;margin:0 0 8px}
+.static b{color:var(--sub);font-weight:400}
+/* fields – Apple checkout */
+.f{margin-bottom:18px}
+.f label{font-size:13px;color:var(--sub);font-weight:400;margin-bottom:6px}
+input[type=text],input[type=tel],input[type=email],input[type=date],input[type=time],input[type=number],textarea{
+  background:#fff;border:1px solid #86868B;border-radius:12px;padding:15px 16px;font-size:17px;height:56px;transition:border-color .15s,box-shadow .15s}
+textarea{height:auto}
+input:focus,textarea:focus{border-color:#0071E3;box-shadow:0 0 0 4px rgba(0,113,227,.22);background:#fff}
+input.filled,textarea.filled{border-color:#86868B;background:#fff}
+input.err{border-color:#E30000;background:#FFF2F4;box-shadow:none}
+.hint{font-size:13px}
+.money::after{left:16px;font-size:17px}
+.money input{padding-left:38px}
+/* read-only package */
+.ro li{font-size:17px;padding:12px 30px 12px 0;border-bottom:1px solid #E8E8ED}
+.ro li::before{top:19px;right:3px;width:13px;height:7px;border-color:#0071E3}
+.prices{gap:14px}
+.pbox{background:#F5F5F7;border-radius:18px;padding:20px 22px}
+.pbox.main{background:#1D1D1F}
+.pl{font-size:14px}
+.pv{font-size:28px;font-weight:600;letter-spacing:-.02em}
+.pbox.main .pv{font-size:40px}
+/* terms – FAQ accordion */
+.terms .card{padding:6px 0}
+details{border-bottom:1px solid #E8E8ED}
+summary{padding:24px 40px;font-size:19px;font-weight:600;letter-spacing:-.015em}
+summary .n{color:#86868B;font-weight:600}
+summary .chev{width:16px;height:16px;border:0;transform:none;position:relative}
+summary .chev::before,summary .chev::after{content:"";position:absolute;background:#0071E3;border-radius:2px;left:50%;top:50%;transform:translate(-50%,-50%)}
+summary .chev::before{width:16px;height:2px}summary .chev::after{width:2px;height:16px}
+summary .chev{transition:transform .25s}
+details[open] summary .chev{transform:rotate(45deg)}
+.clause{padding:0 40px 26px}
+.clause p{font-size:17px;color:#1D1D1F;line-height:1.53}
+.clause p .cn{color:#86868B;font-weight:600}
+.linkbtn{color:#0066CC;font-size:15px}
+@media (max-width:720px){summary{padding:20px 22px;font-size:17px}.clause{padding:0 22px 20px}.clause p{font-size:16px}}
+/* sign */
+.agree{background:#F5F5F7;border-radius:18px;padding:20px;align-items:center}
+.agree input{width:22px;height:22px;accent-color:#0071E3;margin-top:0}
+.agree span{font-size:17px}
+.padbox{border:1px solid #86868B;border-style:solid;border-radius:18px;height:200px}
+.padbox canvas{border-radius:18px}
+.padbox.err{border-color:#E30000}
+/* buttons */
+.btn{font-weight:400;font-size:17px;letter-spacing:-.01em;padding:12px 24px}
+.btn.primary{background:#0071E3;min-width:300px;padding:18px 32px;font-size:17px}
+.btn.primary:hover{background:#0077ED}
+.btn.ghost{background:#E8E8ED;color:#1D1D1F;font-size:15px;padding:11px 22px}
+.btn.ghost:hover{background:#DCDCE1}
+.wa{background:#1D1D1F}.wa:hover{background:#333336}
+.msg{font-size:15px}
+.done .tick{width:72px;height:72px;background:#E3F4E8;font-size:34px}
+.done h3{font-size:32px;font-weight:700;letter-spacing:-.02em}
+.done p{font-size:17px}
+footer{font-size:12px;color:#86868B;padding:60px 0 70px;border-top:1px solid #D2D2D7;margin-top:60px;max-width:980px;margin-left:auto;margin-right:auto}
+/* signed document */
+.dp{font-family:var(--sf);letter-spacing:-.005em}
+.dp-top{height:0}
+.dp-head{padding-top:46px}
+.dp-title{font-size:30px;font-weight:700;letter-spacing:-.025em}
+.dp-sub{font-size:12px}
+.st{letter-spacing:0;font-size:12px;color:#1D1D1F;font-weight:600;margin:22px 0 9px}
+.bx{border-radius:14px}
+.bx h4,.sg h4{letter-spacing:0;font-size:10px;color:#6E6E73;font-weight:600}
+.ck li::before{border-color:#0071E3}
+.cl-h i{color:#86868B}
+.px .bx.dk .v{font-size:24px}
+.agree-t{border-radius:14px}
+.stamp{border-radius:14px}
+@media (max-width:520px){.howto{flex-wrap:nowrap}.howto div{padding:0 10px;font-size:12.5px;white-space:nowrap}
+  .row2{grid-template-columns:1fr;gap:0}.pv{font-size:22px}.pbox{padding:16px}.pl{font-size:13px}.pbox.main .pv{font-size:34px}}
+.pv{white-space:nowrap}
 </style>
 </head>
 <body>
@@ -362,7 +464,7 @@ footer a{color:var(--sub);text-decoration:none}
       <button class="btn ghost" id="editBtn" type="button">עריכה</button>
     </div>
     <div class="msg" id="msg2"></div>
-    <p class="fine">אם הוואטסאפ לא נפתח: שלחו את הפרטים ל-053-622-5141 או ל-menachempictures@gmail.com</p>
+    <p class="fine">אם הוואטסאפ לא נפתח: שלחו את הפרטים לטלפון <bdi dir="ltr">053-622-5141</bdi> או למייל <bdi dir="ltr">menachempictures@gmail.com</bdi></p>
   </div>
 </section>
 
